@@ -1,0 +1,29 @@
+<h1>Books</h1>
+
+<div class="table">
+  <div class="box1">
+   <div class="item">
+    <ul>
+      <li>Title</li>
+      <li>Body</li>
+      <li colspan="3"></li>
+    </ul>
+   </div>
+
+  <% @books.each do |book|%>
+    <%=link_to"Show",book_path(@blog) %>
+    <%=link_to"Edit",book_edit_path(@blog) %>
+    <%=link_to"Destroy",book_path(@blog), method: :delete %>
+  <% end %>
+ </div>
+
+ <div class="box2">
+  <h1>New book</h1>
+  <%= form_with model:@book, local:true do |f| %>
+    <h4>Title</h4>
+    <%=text_field :title%>
+    <h4>Body</h4>
+    <%=text_area :body %>
+  <% end %>
+ </div>
+</div>
