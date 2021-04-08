@@ -1,29 +1,35 @@
 <h1>Books</h1>
-
-<div class="table">
-  <div class="box1">
-   <div class="item">
-    <ul>
-      <li>Title</li>
-      <li>Body</li>
-      <li colspan="3"></li>
-    </ul>
-   </div>
-
-  <% @books.each do |book|%>
-    <%=link_to"Show",book_path(@blog) %>
-    <%=link_to"Edit",book_edit_path(@blog) %>
-    <%=link_to"Destroy",book_path(@blog), method: :delete %>
-  <% end %>
- </div>
-
- <div class="box2">
-  <h1>New book</h1>
-  <%= form_with model:@book, local:true do |f| %>
-    <h4>Title</h4>
-    <%=text_field :title%>
-    <h4>Body</h4>
-    <%=text_area :body %>
-  <% end %>
- </div>
-</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book|%>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        <td><%=link_to"Show",book_path(book) %></td>
+        <td><%=link_to"Edit",edit_book_path(book) %></td>
+        <td><%=link_to"Destroy",book_path(book), method: :delete %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<h2>New book</h2>
+    <%= form_with model:@book, local: true do |f| %>
+    <div class="field">
+      <h4>Title</h4>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <h4>Body</h4>
+      <%= f.text_area :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Create Book' %>
+    </div>
+    <% end %>
